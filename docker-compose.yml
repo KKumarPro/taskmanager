@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html/taskmanager
+    environment:
+      - DB_HOST=db
+      - DB_USER=taskuser
+      - DB_PASS=taskpass
+      - DB_NAME=taskmanager
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=taskmanager
+      - MYSQL_USER=taskuser
+      - MYSQL_PASSWORD=taskpass
+    volumes:
+      - ./backend/schema.sql:/docker-entrypoint-initdb.d/init.sql
