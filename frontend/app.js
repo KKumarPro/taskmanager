@@ -5,7 +5,7 @@
 
 // Point directly at tasks.php — no mod_rewrite needed.
 // IDs are passed as PATH_INFO: tasks.php/42
-const API_BASE = "http://localhost/taskmanager/backend/tasks.php";
+const API_BASE = "../backend/index.php?req=";
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let tasks = [];
